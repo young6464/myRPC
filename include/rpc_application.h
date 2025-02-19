@@ -22,8 +22,9 @@ private:
     static RPCconfig m_config;
     // 全局唯一单例访问对象
     static RPCapplication *m_application;
+    // 
     static std::mutex m_mutex;
-
+    // 构造函数
     RPCApplication();
     ~RPCApplition();
     // 禁止拷贝构造函数(c++11语法)
