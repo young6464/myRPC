@@ -22,11 +22,11 @@ private:
     static RPCconfig m_config;
     // 全局唯一单例访问对象
     static RPCapplication *m_application;
-    // 
+    // 互斥锁
     static std::mutex m_mutex;
     // 构造函数
-    RPCApplication();
-    ~RPCApplition();
+    RPCApplication(){}
+    ~RPCApplition(){}
     // 禁止拷贝构造函数(c++11语法)
     RPCApplication(const RPCapplication&) = delete;
     RPCApplication(RPCapplication&&) = delete;

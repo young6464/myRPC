@@ -9,7 +9,7 @@ class RPCchannel : public google::protobuf::RpcChannel
 {
 public:
     RPCchannel(bool connectNow);
-    virtual ~RPCchannel();
+    virtual ~RPCchannel(){}
     // override可以验证是否为虚函数
     void CallMethod(const ::google::protobuf::MethodDescriptor *method,
                     ::google::protobuf : RpcController *controller,
@@ -18,12 +18,12 @@ public:
                     ::google::protobuf::Closure *done) override;
 
 private:
-    int m_clientfd;
+    int m_clientfd; // 存放客户端套接字
     std::string service_name;
     std::string m_ip;
     uint16_t m_port;
     std::string method_mane;
-    int m_idx;
+    int m_idx; // 用来划分服务器IP和port的下标
     bool NewConnect(const char *ip, uint16_t port);
     std::string QueryServiceHost(ZKclient *zkclient,
                                  std::string service_name,
