@@ -3,7 +3,6 @@
 
 #include <string>
 #include <unordered_map>
-
 // RPC配置
 class RPCconfig
 {

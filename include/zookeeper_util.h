@@ -5,7 +5,7 @@
 #include <semaphore>
 #include <zookeeper/zookeeper.h>
 
-//
+// 封装的zk客户端
 class ZKclient
 {
 public:
