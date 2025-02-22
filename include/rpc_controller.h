@@ -14,7 +14,7 @@ private:
     std::string m_errText;
 
 public:
-    // 
+    // RPCcontroller类构造函数
     RPCcontroller();
     // 重置
     void Reset();
