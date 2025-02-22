@@ -11,7 +11,7 @@ class ZKclient
 public:
     ZKclient();
     ~ZKclient();
-    //zk客户端启动zk服务端
+    // zk客户端启动zk服务端
     void Start();
     // 在zk服务端中依据参数值(路径、数据、数据长度、状态[默认为0])创建一个节点
     void Create(const char *path,
