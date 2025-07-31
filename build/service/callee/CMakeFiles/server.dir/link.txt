@@ -1,1 +1,0 @@
-/usr/bin/c++ -g -rdynamic CMakeFiles/server.dir/server.cc.o CMakeFiles/server.dir/__/user.pb.cc.o -o ../../../bin/server  ../../src/librpc_core.a -lprotobuf -lpthread -lzookeeper_mt -lmuduo_net -lmuduo_base -lglog 
