@@ -1,0 +1,1 @@
+/usr/bin/c++ -g -rdynamic CMakeFiles/client.dir/__/user.pb.cc.o -o ../../../bin/client  ../../src/librpc_core.a -lprotobuf -lpthread -lzookeeper_mt -lmuduo_net -lmuduo_base -lglog 

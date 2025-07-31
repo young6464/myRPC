@@ -1,13 +1,13 @@
 #ifndef _rpc_provider_H
 #define _rpc_provider_H
 
+#include "zookeeper_util.h"
 #include <google/protobuf/service.h>
 #include <google/protobuf/descriptor.h>
 #include <muduo/net/EventLoop.h>
 #include <muduo/net/InetAddress.h>
 #include <muduo/net/TcpConnection.h>
 #include <muduo/net/TcpServer.h>
-#include "zookeeper_util.h"
 #include <functional>
 #include <string>
 #include <unordered_map>
@@ -15,10 +15,10 @@
 class RPCprovider
 {
 public:
-    //供外部使用，用来发布RPC方法的函数接口
+    // 供外部使用，用来发布RPC方法的函数接口
     void NotifyService(google::protobuf::Service *service);
     ~RPCprovider();
-    //启动RPC服务节点，开始提供RPC远程网络调用服务
+    // 启动RPC服务节点，开始提供RPC远程网络调用服务
     void Run();
 
 private:
@@ -34,6 +34,6 @@ private:
     void OnMessage(const muduo::net::TcpConnectionPtr &conn,
                    muduo::net::Buffer *buffer, muduo::Timestamp receive_time);
     void SendRPCResponse(const muduo::net::TcpConnectionPtr &conn,
-                         google::protobuf:: : Message *response);
+                         google::protobuf::Message *response);
 };
 #endif

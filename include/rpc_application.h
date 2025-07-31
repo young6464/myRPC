@@ -18,6 +18,7 @@ public:
     static void DeleteInstance();
     // 获取配置
     static RPCconfig &GetConfig();
+
 private:
     static RPCconfig m_config;
     // 全局唯一单例访问对象
@@ -25,10 +26,10 @@ private:
     // 互斥锁
     static std::mutex m_mutex;
     // 构造函数
-    RPCApplication(){}
-    ~RPCApplition(){}
+    RPCapplication() {}
+    ~RPCapplication() {}
     // 禁止拷贝构造函数(c++11语法)
-    RPCApplication(const RPCapplication&) = delete;
-    RPCApplication(RPCapplication&&) = delete;
+    RPCapplication(const RPCapplication &) = delete;
+    RPCapplication(RPCapplication &&) = delete;
 };
 #endif

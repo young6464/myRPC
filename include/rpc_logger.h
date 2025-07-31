@@ -23,7 +23,7 @@ public:
     // 记录一般级别信息
     static void Info(const std::string &message)
     {
-        LOG(INFO) << massage;
+        LOG(INFO) << message;
     }
     // 记录警告级别信息
     static void Warning(const std::string &message)
@@ -45,4 +45,6 @@ private:
     // 删除拷贝构造函数和赋值运算符，防止复制RPClogger对象
     RPClogger(const RPClogger &) = delete;
     RPClogger &operator=(const RPClogger &) = delete;
-}
+};
+
+#endif

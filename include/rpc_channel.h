@@ -3,16 +3,16 @@
 
 #include <google/protobuf/service.h>
 #include "zookeeper_util.h"
-//RPCchannel类是继承于google::protobuf::RpcChannel
-//目的是为了给客户端进行方法调用的时候来统一接收的
+// RPCchannel类是继承于google::protobuf::RpcChannel
+// 目的是为了给客户端进行方法调用的时候来统一接收的
 class RPCchannel : public google::protobuf::RpcChannel
 {
 public:
     RPCchannel(bool connectNow);
-    virtual ~RPCchannel(){}
+    virtual ~RPCchannel() {}
     // override可以验证是否为虚函数
     void CallMethod(const ::google::protobuf::MethodDescriptor *method,
-                    ::google::protobuf : RpcController *controller,
+                    ::google::protobuf::RpcController *controller,
                     const ::google::protobuf::Message *request,
                     ::google::protobuf::Message *response,
                     ::google::protobuf::Closure *done) override;
