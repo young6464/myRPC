@@ -1,2 +1,0 @@
-/usr/bin/ar qc librpc_core.a CMakeFiles/rpc_core.dir/rpc_header.pb.cc.o
-/usr/bin/ranlib librpc_core.a
