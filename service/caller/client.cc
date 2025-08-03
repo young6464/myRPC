@@ -46,9 +46,9 @@ int main(int argc, char **argv)
    // 整个程序启动后，想要使用RPC框架的功能，必须先调用RPCapplication::Init()方法进行初始化，且只初始化一次
    RPCapplication::Init(argc, argv);
    RPClogger logger("myRPC");
-   // 创建多个线程模拟并发请求，每个线程发送10次RPC请求
+   // 创建多个线程模拟并发请求，每个线程发送指定次数的RPC请求
    const int thread_count = 1000;
-   const int request_per_thread = 10;
+   const int request_per_thread = 2;
    // 使用原子变量来统计成功和失败的请求数量
    std::atomic<int> success_count(0);
    std::atomic<int> fail_count(0);
@@ -56,7 +56,7 @@ int main(int argc, char **argv)
    auto start_time = std::chrono::high_resolution_clock::now();
    for (int i = 0; i < thread_count; i++)
    {
-      threads.emplace_back([argc, argv, &success_count, &fail_count, request_per_thread]()
+      threads.emplace_back([argc, argv, i, &success_count, &fail_count, request_per_thread]()
                            {
          for (int j = 0; j < request_per_thread; j++)
          {
@@ -71,10 +71,10 @@ int main(int argc, char **argv)
    std::chrono::duration<double> elapsed = end_time - start_time;
    auto qps = thread_count * request_per_thread / elapsed.count();
    // 输出统计信息
-   LOG(INFO) << "Total requests: " << thread_count * request_per_thread
-             << ", Success count: " << success_count.load()
-             << ", Fail count: " << fail_count.load()
-             << ", Elapsed time: " << elapsed.count() << " seconds"
-             << ", QPS: " << qps << std::endl;
+   LOG(INFO) << "Total requests: " << thread_count * request_per_thread;
+   LOG(INFO) << "Success count: " << success_count.load();
+   LOG(INFO) << "Fail count: " << fail_count.load();
+   LOG(INFO) << "Elapsed time: " << elapsed.count() << " seconds";
+   LOG(INFO) << "QPS: " << qps;
    return 0;
 }

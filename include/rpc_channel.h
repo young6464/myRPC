@@ -22,7 +22,7 @@ private:
     std::string service_name;
     std::string m_ip;
     uint16_t m_port;
-    std::string method_mane;
+    std::string method_name;
     int m_idx; // 用来划分服务器IP和port的下标
     bool NewConnect(const char *ip, uint16_t port);
     std::string QueryServiceHost(ZKclient *zkclient,

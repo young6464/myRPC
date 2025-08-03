@@ -72,7 +72,7 @@ void RPCprovider::Run()
         }
     }
     // 打印RPC服务启动信息
-    std::cout << "RPCprovider start service at ip:" << ip << "port:" << port << std::endl;
+    std::cout << "RPCprovider start service at ip:" << ip << " port:" << port << std::endl;
     // 启动muduo库的事件循环，监听连接请求
     server->start();
     event_loop.loop();
@@ -165,7 +165,7 @@ void RPCprovider::OnMessage(const muduo::net::TcpConnectionPtr &conn, muduo::net
         std::cout << service_name << "." << method_name << "parse error!" << std::endl;
         return;
     }
-    google::protobuf::Message *response = service->GetRequestPrototype(method).New();
+    google::protobuf::Message *response = service->GetResponsePrototype(method).New();
 
     // 使用google::protobuf::Closure回调函数来处理RPC响应
     google::protobuf::Closure *done = google::protobuf::NewCallback<RPCprovider,

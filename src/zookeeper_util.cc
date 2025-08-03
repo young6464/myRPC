@@ -58,7 +58,8 @@ void ZKclient::Start()
     }
 
     std::unique_lock<std::mutex> lock(cv_mutex); // 锁定全局锁
-    cv.wait(lock, []{return is_connected;}); // 等待连接状态变为已连接
+    cv.wait(lock, []
+            { return is_connected; });     // 等待连接状态变为已连接
     LOG(INFO) << "zookeeper_init success"; // 日志记录连接成功信息
 }
 
@@ -75,7 +76,9 @@ void ZKclient::Create(const char *path, const char *data, int datalen, int state
         if (flag == ZOK)
         {
             LOG(INFO) << "znode create success... path:" << path;
-        } else {
+        }
+        else
+        {
             LOG(ERROR) << "znode create fail... path:" << path;
             exit(EXIT_FAILURE);
         }
@@ -87,12 +90,14 @@ std::string ZKclient::GetData(const char *path)
 {
     char buf[64];
     int bufferlen = sizeof(buf);
-    int flag = zoo_get(m_zhandle, path, 0, buf, bufferlen, nullptr);
+    int flag = zoo_get(m_zhandle, path, 0, buf, &bufferlen, nullptr);
     if (flag != ZOK)
     {
         LOG(ERROR) << "zoo_get error";
         return "";
-    } else {
+    }
+    else
+    {
         return buf;
     }
 }

@@ -7,12 +7,6 @@
 // 主要作用为跟踪RPC方法的调用状态、错误信息并提供控制功能（如取消调用）
 class RPCcontroller : public google::protobuf::RpcController
 {
-private:
-    // RPC方法执行过程中的状态
-    bool m_failed;
-    // RPC方法执行过程中的错误信息
-    std::string m_errText;
-
 public:
     // RPCcontroller类构造函数
     RPCcontroller();
@@ -27,8 +21,14 @@ public:
 
     // 目前未实现具体的功能
     void StartCancel();
-    bool IsCancel() const;
+    bool IsCanceled() const;
     void NotifyOnCancel(google::protobuf::Closure *callback);
+
+private:
+    // RPC方法执行过程中的状态
+    bool m_failed;
+    // RPC方法执行过程中的错误信息
+    std::string m_errText;
 };
 
 #endif

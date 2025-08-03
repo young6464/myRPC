@@ -199,13 +199,13 @@ class ResultCode PROTOBUF_FINAL :
     kErrmsgFieldNumber = 2,
     kErrcodeFieldNumber = 1,
   };
-  // bytes errmsg = 2;
+  // string errmsg = 2;
   void clear_errmsg();
   const std::string& errmsg() const;
   void set_errmsg(const std::string& value);
   void set_errmsg(std::string&& value);
   void set_errmsg(const char* value);
-  void set_errmsg(const void* value, size_t size);
+  void set_errmsg(const char* value, size_t size);
   std::string* mutable_errmsg();
   std::string* release_errmsg();
   void set_allocated_errmsg(std::string* errmsg);
@@ -1028,7 +1028,7 @@ inline void ResultCode::set_errcode(::PROTOBUF_NAMESPACE_ID::int32 value) {
   // @@protoc_insertion_point(field_set:User.ResultCode.errcode)
 }
 
-// bytes errmsg = 2;
+// string errmsg = 2;
 inline void ResultCode::clear_errmsg() {
   errmsg_.ClearToEmpty(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
 }
@@ -1064,7 +1064,7 @@ inline void ResultCode::set_errmsg(const char* value) {
               GetArena());
   // @@protoc_insertion_point(field_set_char:User.ResultCode.errmsg)
 }
-inline void ResultCode::set_errmsg(const void* value,
+inline void ResultCode::set_errmsg(const char* value,
     size_t size) {
   
   errmsg_.Set(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::string(

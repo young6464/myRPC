@@ -1,7 +1,7 @@
 #include "rpc_channel.h"
 #include "rpc_application.h"
 #include "rpc_controller.h"
-#include "./rpc_header.pb.h"
+#include "rpc_header.pb.h"
 #include "rpc_logger.h"
 #include "zookeeper_util.h"
 #include <memory>
@@ -73,7 +73,8 @@ void RPCchannel::CallMethod(const ::google::protobuf::MethodDescriptor *method,
     }
     else
     {
-        controller->SetFailed("serialize rpc header error!") return;
+        controller->SetFailed("serialize rpc header error!");
+        return;
     }
     std::string send_rpc_str;
     {
@@ -127,7 +128,7 @@ bool RPCchannel::NewConnect(const char *ip, uint16_t port)
         LOG(ERROR) << "socket error: " << err_txt;
         return false;
     }
-    struct socketaddr_in server_addr;
+    struct sockaddr_in server_addr;
     server_addr.sin_family = AF_INET;
     server_addr.sin_port = htons(port);
     server_addr.sin_addr.s_addr = inet_addr(ip);

@@ -31,15 +31,13 @@ void RPCcontroller::SetFailed(const std::string &reason)
 // @todo RPC服务端提供的取消功能
 void RPCcontroller::StartCancel()
 {
-
 }
 
-bool RPCcontroller::IsCancel() const
+bool RPCcontroller::IsCanceled() const
 {
     return false;
 }
 
 void RPCcontroller::NotifyOnCancel(google::protobuf::Closure *callback)
 {
-
 }

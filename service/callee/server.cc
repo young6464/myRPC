@@ -21,6 +21,11 @@ public:
               ::User::LoginResponse *response,
               ::google::protobuf::Closure *done)
    {
+      // std::cout << "============================================" << std::endl;
+      // assert(response != nullptr);
+      // std::cout << "request: " << request << ", response: " << response << ", done: " << done << std::endl;
+      // std::cout << "============================================" << std::endl;
+
       // 这里的request是一个指向LoginRequest对象的指针，包含了远程调用传递的参数
       // 框架将远程调用的参数上报给本地业务Login(name, pwd)
       std::string name = request->name();
@@ -29,6 +34,10 @@ public:
       bool login_request = Login(name, pwd);
       // 将处理结果封装到response中，处理结果包括错误码、错误信息和返回值
       User::ResultCode *code = response->mutable_result();
+
+      // std::cout << "code: " << code << std::endl;
+      // assert(code != nullptr);
+
       code->set_errcode(0);
       code->set_errmsg("");
       response->set_success(login_request);
@@ -41,11 +50,11 @@ int main(int argc, char **argv)
 {
 
    // 调用RpcApplication::Init()来初始化RPC应用程序
-   RpcApplication::Init(argc, argv);
+   RPCapplication::Init(argc, argv);
 
    // 将UserService对象注册到RPC节点上, provider是一个RPC网络服务对象
-   RpcProvider provider;
-   provider.RegisterService(new UserService());
+   RPCprovider provider;
+   provider.NotifyService(new UserService());
    std::cout << "Register UserService successfully!" << std::endl;
 
    // 启动一个RPC服务发布节点

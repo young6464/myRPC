@@ -5,7 +5,7 @@ file(GLOB SRC_FILES ${CMAKE_CURRENT_SOURCE_DIR}/*.cc)
 file(GLOB PROTO_SRCS ${CMAKE_CURRENT_SOURCE_DIR}/*.pb.cc)
 
 # 创建一个名为 rpc_core 的静态库，包含 SRC_FILES 和 PROTO_SRCS 中的所有源文件
-add_library(rpc_core STATIC ${SRC_FItarget_include_directoriesLES} ${PROTO_SRCS})
+add_library(rpc_core STATIC ${SRC_FILES} ${PROTO_SRCS})
 
 # 将 protobuf 库链接到 rpc_core 库，使其成为公共依赖项
 target_link_libraries(rpc_core PUBLIC protobuf)

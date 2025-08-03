@@ -169,7 +169,7 @@ static ::PROTOBUF_NAMESPACE_ID::Message const * const file_default_instances[] =
 
 const char descriptor_table_protodef_user_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) =
   "\n\nuser.proto\022\004User\"-\n\nResultCode\022\017\n\007errc"
-  "ode\030\001 \001(\005\022\016\n\006errmsg\030\002 \001(\014\")\n\014LoginReques"
+  "ode\030\001 \001(\005\022\016\n\006errmsg\030\002 \001(\t\")\n\014LoginReques"
   "t\022\014\n\004name\030\001 \001(\014\022\013\n\003pwd\030\002 \001(\014\"B\n\rLoginRes"
   "ponse\022 \n\006result\030\001 \001(\0132\020.User.ResultCode\022"
   "\017\n\007success\030\002 \001(\010\"8\n\017RegisterRequest\022\n\n\002i"
@@ -286,11 +286,12 @@ const char* ResultCode::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID:
           CHK_(ptr);
         } else goto handle_unusual;
         continue;
-      // bytes errmsg = 2;
+      // string errmsg = 2;
       case 2:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 18)) {
           auto str = _internal_mutable_errmsg();
           ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "User.ResultCode.errmsg"));
           CHK_(ptr);
         } else goto handle_unusual;
         continue;
@@ -328,9 +329,13 @@ failure:
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteInt32ToArray(1, this->_internal_errcode(), target);
   }
 
-  // bytes errmsg = 2;
+  // string errmsg = 2;
   if (this->errmsg().size() > 0) {
-    target = stream->WriteBytesMaybeAliased(
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_errmsg().data(), static_cast<int>(this->_internal_errmsg().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "User.ResultCode.errmsg");
+    target = stream->WriteStringMaybeAliased(
         2, this->_internal_errmsg(), target);
   }
 
@@ -350,10 +355,10 @@ size_t ResultCode::ByteSizeLong() const {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  // bytes errmsg = 2;
+  // string errmsg = 2;
   if (this->errmsg().size() > 0) {
     total_size += 1 +
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::BytesSize(
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
         this->_internal_errmsg());
   }
 
